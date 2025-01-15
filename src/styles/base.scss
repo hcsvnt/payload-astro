@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'ESNein';
+    src: url('/fonts/ESNein/ESNein800.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ESAllianz';
+    src: url('/fonts/ESAllianz/ESAllianz300.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ESAllianz';
+    src: url('/fonts/ESAllianz/ESAllianz500.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ESAllianz';
+    src: url('/fonts/ESAllianz/ESAllianz700.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ESAllianz';
+    src: url('/fonts/ESAllianz/ESAllianz800.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --font-primary: 'ESAllianz', sans-serif;
+    --font-secondary: 'ESNein', sans-serif;
+}
+
+body {
+    // background-color: red !important
+    font-family: var(--font-primary) !important;
+    font-weight: 300 !important;
+}

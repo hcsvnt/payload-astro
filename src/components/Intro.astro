@@ -1,5 +1,11 @@
 ---
-import type { Page, Block } from '../types'
+import type { Page, Block } from '../types';
+
+interface Props {
+    id: string;
+    title: string;
+    layout: Block[];
+}
 
 // The props object also contains any props passed from getStaticPaths() when rendering static routes.
 const { id, title, layout } = Astro.props as Page; // not sure if this is the most godful way to get the types

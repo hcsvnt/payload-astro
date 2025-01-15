@@ -1,7 +1,7 @@
 ---
-import type { Page, Block } from '../types';
-import Layout from '../layouts/Layout.astro';
-import Intro from '../components/Intro.astro';
+import type { Page, Block } from '../../types';
+import Layout from './_Layout.astro';
+import Intro from '../../components/Intro.astro';
 
 // The getStaticPaths() is required for static Astro sites.
 // If using SSR, you will not need this function.
@@ -28,5 +28,13 @@ console.log({ id, title, layout });
 ---
 
 <Layout title={title}>
-    <Intro id={id} title={title} layout={layout} />
+    <main>
+        <Intro id={id} title={title} layout={layout} />
+    </main>
 </Layout>
+
+<style>
+    main {
+        padding: 1rem;
+    }
+</style>

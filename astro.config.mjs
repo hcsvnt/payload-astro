@@ -8,4 +8,9 @@ export default defineConfig({
             mode: 'sprite', // or 'inline'
         },
     },
+    vite: {
+        ssr: {
+            noExternal: ['webcoreui']
+        }
+    }
 });
