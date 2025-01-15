@@ -1,3 +1,7 @@
+@import 'mixins';
+@import 'variables/transitions';
+@import 'variables/sizes';
+
 @font-face {
     font-family: 'ESNein';
     src: url('/fonts/ESNein/ESNein800.woff2') format('woff2');
@@ -39,11 +43,85 @@
 }
 
 :root {
+    --app-height: 100svh;
+    --vw-value: 100vw;
+
+    /**
+    * Sizes / General
+    */
+    --padding: #{vw(24)};
+    --padding-small: #{vw(10)};
+
+    /**
+    * Sizes / Elements
+    */
+
+    /**
+    * Colors / General
+    */
+    --color-transparent: rgb(0 0 0 / 0%);
+    --color-white: #fafafa;
+    --color-black: #101010;
+    --color-beige: #dcdcdc;
+    --color-grey: #333333;
+    --color-red: #db2f2f;
+
+    /**
+    * Colors / Semantic
+    */
+    --color-bg: var(--color-beige);
+    --color-text: var(--color-grey);
+    --color-accent: var(--color-red);
+    --color-icon: currentcolor;
+    --color-icon-bg: var(--color-bg);
+
+    /**
+    * Borders
+    */
+    --border-text: 1px solid var(--color-text);
+
+    /**
+    * Fonts
+    */
     --font-primary: 'ESAllianz', sans-serif;
     --font-secondary: 'ESNein', sans-serif;
+
+    /**
+	 * Transitions
+	 */
+    --transition: #{$time $ease-custom};
+    --transition-fast: #{$time-fast $ease-custom};
+    --transition-fast-delay: #{$time-fast $ease-custom $time-fast};
+    --transition-slow: #{$time-slow $ease-custom};
+    --ease-in: #{$ease-in};
+    --ease-out: #{$ease-out};
+    --ease-in-out: #{$ease-in-out};
+    --ease-out-back: #{$ease-out-back};
+    --ease-custom: #{$ease-custom};
 }
 
+html,
 body {
     font-family: var(--font-primary);
     font-weight: 300;
+    // background-color: var(--color-bg);
+    // color: var(--color-text);
+}
+
+html {
+    @include breakpoint(desktop) {
+        font-size: vw($browser-context);
+    }
+
+    @include breakpoint(hd) {
+        font-size: 20px;
+    }
+
+    @include breakpoint(tablet) {
+        font-size: vw($browser-context, tablet);
+    }
+
+    @include breakpoint(phone) {
+        font-size: vw($browser-context, phone);
+    }
 }
