@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+type Block = {
+    blockType: string;
+    title: string;
+    content: string;
+    'content-localized': string;
+    id: string;
+    content_html: string;
+    content_localized_html: string;
+};
+
+type Page = {
+    id: string;
+    slugLock: boolean;
+    _status: string;
+    layout: Block[];
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    slug: string;
+    title: string;
+};
+
+// The getStaticPaths() is required for static Astro sites.
+// If using SSR, you will not need this function.
+export async function getStaticPaths() {
+    // const pagesURL = 'https://payload-cms-template-env-v3-snshp.vercel.app/cms/api/pages';
+
+    // todo: add locale param
+    const pagesURL = 'http://localhost:3000/cms/api/pages';
+    const res = await fetch(pagesURL);
+    const pagesData = await res.json();
+    const { docs: pages } = pagesData;
+
+    return pages.map(({ id, slug, title, layout }: Page) => {
+        return {
+            params: { slug },
+            props: { id, slug, title, layout },
+        };
+    });
+}
+
+// The props object also contains any props passed from getStaticPaths() when rendering static routes.
+const { id, title, layout } = Astro.props as Page; // not sure if this is the most godful way to get the types
+console.log({ id, title, layout });
+---
+
+<Layout title={title}>
+    <article>
+        <h1 set:html={title} />
+        {
+            layout.map(
+                ({
+                    blockType,
+                    title,
+                    content,
+                    'content-localized': contentLocalized,
+                    id,
+                    content_html,
+                    content_localized_html,
+                }: Block) => (
+                    <section>
+                        <h2>{title}</h2>
+                        <div set:html={content_html} />
+                        <div set:html={content_localized_html} />
+                    </section>
+                )
+            )
+        }
+    </article>
+</Layout>
