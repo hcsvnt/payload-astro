@@ -1,7 +1,7 @@
 ---
 import { Select } from 'webcoreui/astro';
 
-const locale = Astro.cookies.get('locale')?.value || 'pl-PL';
+const locale = Astro.cookies.get('locale')?.value || 'en-EN';
 ---
 
 <header>
@@ -14,7 +14,7 @@ const locale = Astro.cookies.get('locale')?.value || 'pl-PL';
         position='bottom'
         itemGroups={[
             {
-                title: 'Languages',
+                // title: 'Languages',
                 items: [
                     {
                         name: 'English',
@@ -35,11 +35,21 @@ const locale = Astro.cookies.get('locale')?.value || 'pl-PL';
                 ],
             },
         ]}
-        showSearchBar={true}
-        showSearchBarIcon={true}
+        showSearchBar={false}
+        showSearchBarIcon={false}
         searchBarPlaceholder='Filter options'
     />
 </header>
+
+<script>
+    import { listen } from 'webcoreui';
+    import Cookies from 'js-cookie';
+
+    listen('selectOnChange', event => {
+        Cookies.set('locale', event.value);
+        document.location.reload();
+    });
+</script>
 
 <style>
     header {

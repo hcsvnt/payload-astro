@@ -6,9 +6,10 @@ interface Props {
 
 const { title } = Astro.props;
 
-// save locale to cookie
+// save locale to cookie if not set previously
 const locale = Astro.preferredLocale;
-Astro.cookies.set('locale', locale || 'en-US');
+const current = Astro.cookies.get('locale')?.value;
+locale && !current && Astro.cookies.set('locale', locale);
 ---
 
 <!doctype html>

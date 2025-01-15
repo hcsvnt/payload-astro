@@ -30,7 +30,7 @@ import Intro from '../../components/Intro.astro';
 // console.log({ id, title, layout });
 
 const locale = Astro.cookies.get('locale')?.value || 'en-US';
-const pagesURL = `http://localhost:3000/cms/api/pages?locale=${locale || 'en-US'}`;
+const pagesURL = `http://localhost:3000/cms/api/pages?locale=${locale || 'ex-US'}`;
 const res = await fetch(pagesURL);
 const pagesData = await res.json();
 const { docs: pages } = pagesData;
