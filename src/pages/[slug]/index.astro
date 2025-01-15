@@ -1,30 +1,41 @@
 ---
+// export const prerender = false; // opt out of static generation
+
 import type { Page, Block } from '../../types';
 import Layout from './_Layout.astro';
 import Intro from '../../components/Intro.astro';
 
 // The getStaticPaths() is required for static Astro sites.
 // If using SSR, you will not need this function.
-export async function getStaticPaths() {
-    // const pagesURL = 'https://payload-cms-template-env-v3-snshp.vercel.app/cms/api/pages';
+// const locale = Astro.cookies.get('locale')?.value || 'en-US';
+// but cookies won't work with static generation...
+// export async function getStaticPaths() {
+//     // const pagesURL = 'https://payload-cms-template-env-v3-snshp.vercel.app/cms/api/pages';
+//     // const pagesURL = `http://localhost:3000/cms/api/pages?locale=${'locale' || 'en-US'}`;
+//     const pagesURL = `http://localhost:3000/cms/api/pages`;
+//     const res = await fetch(pagesURL);
+//     const pagesData = await res.json();
+//     const { docs: pages } = pagesData;
 
-    // todo: add locale param
-    const pagesURL = 'http://localhost:3000/cms/api/pages';
-    const res = await fetch(pagesURL);
-    const pagesData = await res.json();
-    const { docs: pages } = pagesData;
-
-    return pages.map(({ id, slug, title, layout }: Page) => {
-        return {
-            params: { slug },
-            props: { id, slug, title, layout },
-        };
-    });
-}
+//     return pages.map(({ id, slug, title, layout }: Page) => {
+//         return {
+//             params: { slug },
+//             props: { id, slug, title, layout },
+//         };
+//     });
+// }
 
 // The props object also contains any props passed from getStaticPaths() when rendering static routes.
-const { id, title, layout } = Astro.props as Page; // not sure if this is the most godful way to get the types
-console.log({ id, title, layout });
+// const { id, title, layout } = Astro.props as Page; // not sure if this is the most godful way to get the types
+// console.log({ id, title, layout });
+
+const locale = Astro.cookies.get('locale')?.value || 'en-US';
+const pagesURL = `http://localhost:3000/cms/api/pages?locale=${locale || 'en-US'}`;
+const res = await fetch(pagesURL);
+const pagesData = await res.json();
+const { docs: pages } = pagesData;
+
+const { id, title, layout } = pages.find(({ slug }: Page) => slug === Astro.params.slug);
 ---
 
 <Layout title={title}>

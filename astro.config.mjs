@@ -8,9 +8,14 @@ export default defineConfig({
             mode: 'sprite', // or 'inline'
         },
     },
+    i18n: {
+        locales: ['en-US', 'pl-PL', 'de-DE', 'es-ES'],
+        defaultLocale: 'pl-PL',
+    },
+    output: 'server', // 'server' for SSR or 'static' for SSG
     vite: {
         ssr: {
-            noExternal: ['webcoreui']
-        }
-    }
+            noExternal: ['webcoreui'],
+        },
+    },
 });

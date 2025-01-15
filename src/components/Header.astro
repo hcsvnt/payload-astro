@@ -1,5 +1,7 @@
 ---
-import { Flex, Select } from 'webcoreui/astro';
+import { Select } from 'webcoreui/astro';
+
+const locale = Astro.cookies.get('locale')?.value || 'pl-PL';
 ---
 
 <header>
@@ -8,7 +10,7 @@ import { Flex, Select } from 'webcoreui/astro';
         className='select'
         name='select-language'
         label='Select language'
-        value='en-US'
+        value={locale}
         position='bottom'
         itemGroups={[
             {

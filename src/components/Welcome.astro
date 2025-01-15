@@ -8,7 +8,7 @@ const pagesData = await res.json();
 const { docs: pages } = pagesData;
 
 const links: string[] = pages.map(({ slug }: { slug: string }) => slug);
-console.log({ links });
+// console.log({ links });
 ---
 
 <div id='container'>
