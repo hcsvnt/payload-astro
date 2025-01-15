@@ -1,0 +1,30 @@
+---
+import type { Page, Block } from '../types'
+
+// The props object also contains any props passed from getStaticPaths() when rendering static routes.
+const { id, title, layout } = Astro.props as Page; // not sure if this is the most godful way to get the types
+console.log({ id, title, layout });
+---
+
+<section>
+    <h1 set:html={title} />
+    {
+        layout.map(
+            ({
+                blockType,
+                title,
+                content,
+                'content-localized': contentLocalized,
+                id,
+                content_html,
+                content_localized_html,
+            }: Block) => (
+                <section>
+                    <h2>{title}</h2>
+                    <div set:html={content_html} />
+                    <div set:html={content_localized_html} />
+                </section>
+            )
+        )
+    }
+</section>

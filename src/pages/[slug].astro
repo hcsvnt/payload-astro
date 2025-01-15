@@ -1,27 +1,7 @@
 ---
+import type { Page, Block } from '../types';
 import Layout from '../layouts/Layout.astro';
-
-type Block = {
-    blockType: string;
-    title: string;
-    content: string;
-    'content-localized': string;
-    id: string;
-    content_html: string;
-    content_localized_html: string;
-};
-
-type Page = {
-    id: string;
-    slugLock: boolean;
-    _status: string;
-    layout: Block[];
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-    slug: string;
-    title: string;
-};
+import Intro from '../components/Intro.astro';
 
 // The getStaticPaths() is required for static Astro sites.
 // If using SSR, you will not need this function.
@@ -48,26 +28,5 @@ console.log({ id, title, layout });
 ---
 
 <Layout title={title}>
-    <article>
-        <h1 set:html={title} />
-        {
-            layout.map(
-                ({
-                    blockType,
-                    title,
-                    content,
-                    'content-localized': contentLocalized,
-                    id,
-                    content_html,
-                    content_localized_html,
-                }: Block) => (
-                    <section>
-                        <h2>{title}</h2>
-                        <div set:html={content_html} />
-                        <div set:html={content_localized_html} />
-                    </section>
-                )
-            )
-        }
-    </article>
+    <Intro id={id} title={title} layout={layout} />
 </Layout>
