@@ -1,8 +1,7 @@
 ---
 import Background from '../assets/svg/background.svg'; // just import svg as a component, that's it
 
-// const pagesURL = 'https://payload-cms-template-env-v3-snshp.vercel.app/cms/api/pages';
-const pagesURL = 'http://localhost:3000/cms/api/pages';
+const pagesURL = `${import.meta.env.CMS_URL}/api/pages`;
 const res = await fetch(pagesURL);
 const pagesData = await res.json();
 const { docs: pages } = pagesData;

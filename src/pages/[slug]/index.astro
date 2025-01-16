@@ -11,7 +11,6 @@ import Intro from '../../components/Intro.astro';
 // The getStaticPaths() is required for static Astro sites.
 // If using SSR, you will not need this function.
 // const locale = Astro.cookies.get('locale')?.value || 'en-US';
-// but cookies won't work with static generation...
 // export async function getStaticPaths() {
 //     // const pagesURL = 'https://payload-cms-template-env-v3-snshp.vercel.app/cms/api/pages';
 //     // const pagesURL = `http://localhost:3000/cms/api/pages?locale=${'locale' || 'en-US'}`;
@@ -33,10 +32,17 @@ import Intro from '../../components/Intro.astro';
 // console.log({ id, title, layout });
 
 /**
+ *  ...but we can't get cookies with static generation, so...
+ */
+
+/**
  * SSR
  */
 const locale = Astro.cookies.get('locale')?.value || 'en-US';
-const pagesURL = `http://localhost:3000/cms/api/pages?locale=${locale || 'ex-US'}`;
+const pagesURL = `${import.meta.env.CMS_URL}/api/pages?locale=${locale}`;
+
+console.log({ pagesURL });
+
 const res = await fetch(pagesURL);
 const pagesData = await res.json();
 const { docs: pages } = pagesData;
