@@ -5,10 +5,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:vercel": "astro build && vercel deploy --prebuilt",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/vercel": "^8.0.2",
     "astro": "^5.1.7",
     "js-cookie": "^3.0.5",
     "sass": "^1.83.4",
