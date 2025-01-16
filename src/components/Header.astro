@@ -5,7 +5,9 @@ const locale = Astro.cookies.get('locale')?.value || 'en-EN';
 ---
 
 <header>
-    <h1>Huncwot loves Astro &lt;3</h1>
+    <a href='/'>
+        <h1>Huncwot loves Astro &lt;3</h1>
+    </a>
     <Select
         className='select'
         name='select-language'
@@ -53,18 +55,26 @@ const locale = Astro.cookies.get('locale')?.value || 'en-EN';
 
 <style>
     header {
-        padding: 1rem;
+        padding: 1rem 1rem 0.75rem;
         margin-bottom: 1rem;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: end;
+        border-bottom: 1px solid grey;
 
         label {
             width: 24ch;
         }
     }
 
+    a {
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+    }
+
     h1 {
         width: fit-content;
+        margin: 0;
     }
 </style>

@@ -11,12 +11,12 @@ const links: string[] = pages.map(({ slug }: { slug: string }) => slug);
 // console.log({ links });
 ---
 
-<div id='container'>
+<div class='container'>
     <!-- any svg component can be manually broken out of the default (sprite vs
         inline) behavior set in the config -->
     <Background id='background' mode='inline' />
     <main>
-        <h1>Intro</h1>
+        <h1>Home is where Astro is.</h1>
         <p>Navigate to one of available pages:</p>
         <ul>
             {
@@ -41,8 +41,9 @@ const links: string[] = pages.map(({ slug }: { slug: string }) => slug);
         filter: blur(100px);
     }
 
-    #container {
+    .container {
         font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
         height: 100%;
+        padding: 1rem;
     }
 </style>

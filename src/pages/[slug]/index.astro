@@ -5,6 +5,9 @@ import type { Page, Block } from '../../types';
 import Layout from './_Layout.astro';
 import Intro from '../../components/Intro.astro';
 
+/**
+ * SSG
+ */
 // The getStaticPaths() is required for static Astro sites.
 // If using SSR, you will not need this function.
 // const locale = Astro.cookies.get('locale')?.value || 'en-US';
@@ -29,6 +32,9 @@ import Intro from '../../components/Intro.astro';
 // const { id, title, layout } = Astro.props as Page; // not sure if this is the most godful way to get the types
 // console.log({ id, title, layout });
 
+/**
+ * SSR
+ */
 const locale = Astro.cookies.get('locale')?.value || 'en-US';
 const pagesURL = `http://localhost:3000/cms/api/pages?locale=${locale || 'ex-US'}`;
 const res = await fetch(pagesURL);
